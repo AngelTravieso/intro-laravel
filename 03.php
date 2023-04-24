@@ -3,13 +3,11 @@ include 'includes/header.php';
 
 // Atributos de una clase
 class Empleado {
-
     public $nombre;
     public $apellido;
     public $departamento;
     public $email;
     public $codigo;
-
 }
 
 $empleado = new Empleado;
