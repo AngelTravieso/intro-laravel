@@ -1,6 +1,7 @@
 <?php
 include 'includes/header.php';
 
+// Herencia
 class Persona {
     protected $nombre;
     protected $apellido;
