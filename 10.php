@@ -1,22 +1,17 @@
 <?php
 include 'includes/header.php';
 
-// Herencia
-class Empleado {
+class Persona {
     protected $nombre;
     protected $apellido;
     protected $email;
     protected $telefono;
-    protected $codigo;
-    protected $departamento;
 
-    public function __construct($nombre, $apellido, $email, $telefono, $codigo, $departamento) {
+    public function __construct($nombre, $apellido, $email, $telefono) {
         $this->nombre = $nombre;
         $this->apellido = $apellido;
         $this->email = $email;
         $this->telefono = $telefono;
-        $this->codigo = $codigo;
-        $this->departamento = $departamento;
     }
 
     public function mostrarInformacion()
@@ -24,29 +19,39 @@ class Empleado {
         echo "Nombre: $this->nombre $this->apellido Email: $this->email";
     }
 
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
 }
 
-class Proveedor {
-    protected $nombre;
-    protected $apellido;
-    protected $email;
-    protected $telefono;
+// Herencia
+class Empleado extends Persona {
+    protected $codigo;
+    protected $departamento;
+
+    public function __construct($nombre, $apellido, $email, $telefono, $codigo, $departamento) {
+        parent::__construct($nombre, $apellido, $email, $telefono);
+        $this->codigo = $codigo;
+        $this->departamento = $departamento;
+    }
+}
+
+
+class Proveedor extends Persona {
     protected $empresa;
 
     public function __construct($nombre, $apellido, $email, $telefono, $empresa) {
-        $this->nombre = $empresa;
-        $this->apellido = $apellido;
-        $this->email = $email;
-        $this->telefono = $telefono;
+        parent::__construct($nombre, $apellido, $email, $telefono);
         $this->empresa = $empresa;
     }
 
     public function mostrarInformacion()
     {
-        echo "Nombre: $this->nombre $this->apellido Email: $this->email";
+        echo "Nombre: $this->nombre $this->apellido Email: $this->email de la empresa $this->empresa";
     }
-
 }
+
 
 $empleado = new Empleado('Angel', 'Travieso', 'correo@correo.com', 4654654, 005, 'TI');
 
@@ -65,3 +70,7 @@ $empleado->mostrarInformacion();
 echo '<br>';
 
 $proveedor->mostrarInformacion();
+
+echo '<br>';
+
+echo $proveedor->getTelefono();
